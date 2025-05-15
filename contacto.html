@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto - Clínica Sur</title>
+
+  <!-- Fuentes -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS mediante CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary': '#7c8e91',    /* Color gris azulado del logo */
+            'secondary': '#bcc9a6',  /* Color verde menta del logo */
+            'accent': '#dfe5d0',     /* Versión más clara del verde */
+            'neutral': '#f5f5f5',    /* Gris muy claro para fondos */
+          },
+          fontFamily: {
+            'sans': ['Montserrat', 'sans-serif'],
+            'body': ['Open Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Alpine.js para interactividad -->
+  <script src="https://unpkg.com/alpinejs" defer></script>
+
+  <!-- AOS (Animate On Scroll) para animaciones al hacer scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+  <!-- GSAP para animaciones avanzadas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+
+  <!-- Swiper para carruseles modernos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <!-- Particles.js para fondos interactivos -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      /* Previene scroll horizontal */
+    }
+
+    body {
+      overflow-x: hidden;
+      /* Previene scroll horizontal */
+      max-width: 100%;
+      /* Asegura que el contenido no cause scroll horizontal */
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .contact-icon {
+      transition: all 0.4s ease;
+    }
+
+    .contact-item:hover .contact-icon {
+      transform: rotate(15deg) scale(1.2);
+      color: white;
+    }
+
+    .btn-shine {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-shine:after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -100%;
+      width: 20%;
+      height: 200%;
+      opacity: 0;
+      transform: rotate(30deg);
+      background: rgba(255, 255, 255, 0.13);
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.13) 77%, rgba(255, 255, 255, 0.5) 92%, rgba(255, 255, 255, 0.0) 100%);
+    }
+
+    .btn-shine:hover:after {
+      opacity: 1;
+      left: 130%;
+      transition: left 0.7s ease;
+    }
+
+    .form-field {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Estilos para inputs y textareas normales */
+    .form-field input:focus+label,
+    .form-field textarea:focus+label,
+    .form-field input:not(:placeholder-shown)+label,
+    .form-field textarea:not(:placeholder-shown)+label {
+      transform: translateY(-2.2rem) scale(0.85);
+      color: #626e70;
+      background-color: white;
+      border: 2px solid #626e70;
+      border-radius: 3px;
+      padding: 0 0.25rem;
+      left: 0.75rem;
+      z-index: 1;
+    }
+
+    /* Estilo especial para el select */
+    .form-field.select-field label {
+      transform: translateY(-2.2rem) scale(0.85);
+      color: #626e70;
+      background-color: white;
+      border: 2px solid #626e70;
+      padding: 0 0.25rem;
+      left: 0.75rem;
+      z-index: 1;
+    }
+
+    .form-field label {
+      position: absolute;
+      left: 1rem;
+      top: 1.1rem;
+      transition: all 0.2s ease;
+      pointer-events: none;
+      font-size: 0.875rem;
+      color: #4b5563;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      padding: 1.25rem 1rem 0.5rem;
+      width: 100%;
+      background: white;
+    }
+
+    /* Estilo específico para select */
+    .form-field select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: white;
+      appearance: auto;
+      /* Mantener el dropdown nativo */
+    }
+
+    /* Asegurar que los elementos sean visibles */
+    .service-card {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Estilos para el menú de navegación */
+    .nav-item {
+      position: relative;
+      padding-bottom: 2px;
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-item:hover {
+      color: #dfe5d0;
+    }
+
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      height: 2px;
+      width: 100%;
+      background-color: #dfe5d0;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .nav-item:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-item.active::after {
+      transform: scaleX(1);
+    }
+
+    .mobile-nav-item {
+      display: block;
+      padding: 10px;
+      color: white;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-nav-item:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #dfe5d0;
+    }
+
+    .mobile-nav-item.active {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #dfe5d0;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body class="font-body text-gray-800 bg-neutral">
+  <header class="bg-primary text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex justify-between items-center">
+        <!-- Logo y nombre -->
+        <div class="flex items-center space-x-2">
+          <a href="index.html" class="flex items-center space-x-3 group">
+            <div
+              class="h-10 w-10 bg-white/90 rounded-full flex items-center justify-center shadow-sm transform transition-transform group-hover:scale-110 duration-300 border-2 border-accent/30">
+              <img src="./src/LogoClinicaSur-removebg-preview.png" alt="Logo Clínica Sur"
+                class="h-8 w-8 object-contain">
+            </div>
+            <div>
+              <h1 class="text-xl font-bold">Clínica Sur</h1>
+              <p class="text-xs text-accent">Malargüe, Mendoza</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Navegación para desktop -->
+        <nav class="hidden md:block">
+          <ul class="flex space-x-6">
+            <li><a href="index.html" class="nav-item">Inicio</a></li>
+            <li><a href="institucional.html" class="nav-item">Institucional</a></li>
+            <li><a href="servicios.html" class="nav-item">Servicios</a></li>
+            <li><a href="medicina-laboral.html" class="nav-item">Medicina Laboral</a></li>
+            <li><a href="contacto.html" class="nav-item">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <!-- Botón menú móvil -->
+        <button id="mobile-menu-button" class="md:hidden text-white hover:text-accent focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Menú móvil (inicialmente oculto) -->
+      <div id="mobile-menu" class="md:hidden mt-4 pb-2 hidden">
+        <ul class="space-y-2">
+          <li><a href="index.html" class="mobile-nav-item">Inicio</a></li>
+          <li><a href="institucional.html" class="mobile-nav-item">Institucional</a></li>
+          <li><a href="servicios.html" class="mobile-nav-item">Servicios</a></li>
+          <li><a href="medicina-laboral.html" class="mobile-nav-item">Medicina Laboral</a></li>
+          <li><a href="contacto.html" class="mobile-nav-item">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Banner de contacto con partículas -->
+    <section class="bg-gradient-to-r from-primary to-secondary text-white py-16 relative overflow-hidden">
+      <div id="particles-js" class="absolute inset-0"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-3xl" data-aos="fade-right">
+          <h2 class="text-4xl font-bold mb-4">Contacto</h2>
+          <p class="text-lg">Estamos aquí para atender sus consultas. Contáctenos para más información sobre nuestros
+            servicios o para programar una visita.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Información de contacto y formulario -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-12">
+          <!-- Información de contacto -->
+          <div data-aos="fade-right" data-aos-duration="1000">
+            <h3 class="text-2xl font-bold mb-6 text-primary">Información de Contacto</h3>
+
+            <div class="space-y-6">
+              <div class="flex items-start contact-item">
+                <div class="bg-accent rounded-full p-3 mr-4 contact-icon">
+                  <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-primary mb-1">Dirección</h4>
+                  <p>Villegas Oeste 97, Malargüe, Mendoza</p>
+                  <p class="text-sm text-gray-500 mt-1">Argentina, CP 5613</p>
+                </div>
+              </div>
+
+              <div class="flex items-start contact-item">
+                <div class="bg-accent rounded-full p-3 mr-4 contact-icon">
+                  <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-primary mb-1">Teléfonos</h4>
+                  <p>Urgencias: (260) 447-0326</p>
+                  <p>Administración: (260) 447-0326</p>
+                  <p>Guardia: (260) 432-2579</p>
+                </div>
+              </div>
+
+              <div class="flex items-start contact-item">
+                <div class="bg-accent rounded-full p-3 mr-4 contact-icon">
+                  <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-primary mb-1">Email</h4>
+                  <p>clinicasuradm@clinicasur.com.ar</p>
+                </div>
+              </div>
+
+              <div class="flex items-start contact-item">
+                <div class="bg-accent rounded-full p-3 mr-4 contact-icon">
+                  <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-primary mb-1">Horarios de Atención</h4>
+                  <p>Administración: Lunes a Viernes de 8:00 a 18:00</p>
+                  <p>Guardia médica: 24 horas, todos los días</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Google Maps embed -->
+            <div class="mt-8 rounded-lg overflow-hidden shadow-md" data-aos="zoom-in" data-aos-delay="300">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3249.3338058656377!2d-69.5866814!3d-35.47128399999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967a7f492c430101%3A0xd9901aeb9627aa9c!2sCl%C3%ADnica%20Sur!5e0!3m2!1ses!2sar!4v1747234228889!5m2!1ses!2sar"
+                width="100%" height="300" style="border:0; border-radius: 0.5rem;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Clínica Sur en Google Maps">
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Formulario de contacto con animaciones -->
+          <div data-aos="fade-left" data-aos-duration="1000">
+            <h3 class="text-2xl font-bold mb-6 text-primary">Envíenos su Consulta</h3>
+
+            <form x-data="{
+              nombre: '',
+              email: '',
+              telefono: '',
+              mensaje: '',
+              tipo: 'general',
+              enviando: false,
+              enviado: false,
+              mensaje_error: '',
+              validar() {
+                if (!this.nombre || !this.email || !this.mensaje) {
+                  this.mensaje_error = 'Por favor complete los campos requeridos.';
+                  return false;
+                }
+                if (!this.email.includes('@')) {
+                  this.mensaje_error = 'Por favor ingrese un email válido.';
+                  return false;
+                }
+                return true;
+              },
+              enviar() {
+                if (!this.validar()) return;
+                this.enviando = true;
+                // Simulación de envío
+                setTimeout(() => {
+                  this.enviando = false;
+                  this.enviado = true;
+                  this.limpiarFormulario();
+                }, 1000);
+              },
+              limpiarFormulario() {
+                this.nombre = '';
+                this.email = '';
+                this.telefono = '';
+                this.mensaje = '';
+                this.tipo = 'general';
+              }
+            }" @submit.prevent="enviar" class="space-y-6 bg-neutral p-6 rounded-lg shadow-md card-hover">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="form-field">
+                  <input type="text" id="nombre" x-model="nombre"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder=" " required>
+                  <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre completo *</label>
+                </div>
+                <div class="form-field">
+                  <input type="email" id="email" x-model="email"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder=" " required>
+                  <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="form-field">
+                  <input type="tel" id="telefono" x-model="telefono"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder=" ">
+                  <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
+                </div>
+                <div class="form-field select-field">
+                  <select id="tipo" x-model="tipo"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                    <option value="general">Consulta general</option>
+                    <option value="servicios">Servicios médicos</option>
+                    <option value="medicina_laboral">Medicina laboral</option>
+                    <option value="presupuesto">Solicitud de presupuesto</option>
+                  </select>
+                  <label for="tipo" class="block text-sm font-medium text-gray-700">Tipo de consulta</label>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <textarea id="mensaje" x-model="mensaje" rows="5"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  placeholder=" " required></textarea>
+                <label for="mensaje" class="block text-sm font-medium text-gray-700">Mensaje *</label>
+              </div>
+
+              <div x-show="mensaje_error" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 transform scale-95"
+                x-transition:enter-end="opacity-100 transform scale-100"
+                class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" x-cloak>
+                <p x-text="mensaje_error"></p>
+              </div>
+
+              <div x-show="enviado" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 transform scale-95"
+                x-transition:enter-end="opacity-100 transform scale-100"
+                class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" x-cloak>
+                <p>¡Gracias por su mensaje! Nos pondremos en contacto a la brevedad.</p>
+              </div>
+
+              <div>
+                <button type="submit"
+                  class="w-full bg-primary text-white py-3 px-6 rounded-md font-semibold hover:bg-opacity-90 transition-all flex justify-center items-center transform hover:scale-105 btn-shine"
+                  :disabled="enviando">
+                  <span x-show="!enviando">Enviar mensaje</span>
+                  <span x-show="enviando" class="inline-block animate-spin mr-2">
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                      </path>
+                    </svg>
+                  </span>
+                  <span x-show="enviando">Enviando...</span>
+                </button>
+              </div>
+
+              <p class="text-sm text-gray-500">Los campos marcados con * son obligatorios.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action con partículas -->
+    <section class="py-16 bg-gradient-to-r from-primary to-secondary text-white relative overflow-hidden">
+      <div id="particles-cta" class="absolute inset-0"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <h3 class="text-2xl font-bold mb-4" data-aos="zoom-in">¿Necesita atención médica urgente?</h3>
+        <p class="text-lg mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">Nuestra guardia está
+          disponible las 24 horas para brindarle la atención que necesita.</p>
+        <div data-aos="fade-up" data-aos-delay="400">
+          <a href="tel:2604470326"
+            class="bg-white text-primary px-8 py-3 rounded-md font-bold hover:bg-neutral transition-all transform hover:scale-105">
+            <svg class="h-5 w-5 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            Llamar a la Guardia
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-primary text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Clínica Sur</h3>
+          <p class="mb-2">Sirviendo a la comunidad de Malargüe con excelencia médica.</p>
+          <p>© 2025 Clínica Sur. Todos los derechos reservados.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Contacto</h3>
+          <p class="mb-2">Dirección: Villegas Oeste 97, Malargüe, Mendoza</p>
+          <p class="mb-2">Urgencias: (260) 447-0326</p>
+          <p class="mb-2">Administración: (260) 447-0326</p>
+          <p class="mb-2">Guardia: (260) 432-2579</p>
+          <p>Email: clinicasuradm@clinicasur.com.ar</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Horarios</h3>
+          <p class="mb-2">Atención administrativa: Lunes a Viernes 8:00 - 18:00</p>
+          <p>Guardia médica: 24 horas, todos los días</p>
+        </div>
+      </div>
+
+      <!-- Línea separadora -->
+      <div class="border-t border-white/20 mt-8 pt-4 text-center">
+        <p class="text-sm text-white/80">
+          Sitio Desarrollado por
+          <a href="https://tearsdev.netlify.app/" target="_blank" rel="noopener noreferrer"
+            class="font-medium hover:text-accent transition-colors duration-300 hover:underline">
+            TearsDev
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Inicializar AOS (Animate On Scroll)
+    AOS.init({
+      duration: 800,
+      once: true,
+      mirror: false,
+      offset: 120,
+      easing: 'ease-in-out'
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      // Animación del header con GSAP
+      gsap.from("#navbar", {
+        y: -100,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+      });
+
+      // Inicializar Particles.js para el fondo del hero
+      if (document.getElementById('particles-js')) {
+        particlesJS('particles-js', {
+          particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: "#ffffff" },
+            opacity: { value: 0.5, random: false },
+            size: { value: 3, random: true },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: "#ffffff",
+              opacity: 0.4,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 2,
+              direction: "none",
+              random: false,
+              straight: false,
+              out_mode: "out",
+              bounce: false
+            }
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: { enable: true, mode: "grab" },
+              onclick: { enable: true, mode: "push" }
+            }
+          }
+        });
+      }
+
+      // Inicializar particles para CTA
+      if (document.getElementById('particles-cta')) {
+        particlesJS('particles-cta', {
+          particles: {
+            number: { value: 50, density: { enable: true, value_area: 800 } },
+            color: { value: "#ffffff" },
+            opacity: { value: 0.3, random: false },
+            size: { value: 2, random: true },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: "#ffffff",
+              opacity: 0.2,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 1,
+              direction: "none",
+              random: true,
+              straight: false,
+              out_mode: "out",
+              bounce: false
+            }
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: { enable: true, mode: "grab" },
+              onclick: { enable: true, mode: "push" }
+            }
+          }
+        });
+      }
+      // GSAP animaciones para elementos clave
+      gsap.from(".contact-item", {
+        scrollTrigger: {
+          trigger: ".contact-item",
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        },
+        x: -50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2
+      });
+
+      console.log('Página de Contacto cargada con animaciones');
+    });
+
+    // Forzar visibilidad después de cierto tiempo
+    setTimeout(function () {
+      document.querySelectorAll('[data-aos]').forEach(el => {
+        el.classList.add('aos-animate');
+      });
+    }, 500);
+
+    // Script para el menú móvil
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Marca la página actual como activa
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(link => {
+      const href = link.getAttribute('href');
+      if (currentPath.endsWith(href) ||
+        (currentPath.endsWith('/') && href === 'index.html') ||
+        (currentPath === '' && href === 'index.html')) {
+        link.classList.add('active');
+      }
+    });
+
+    // Toggle del menú móvil
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', function () {
+        if (mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+
+      // Cerrar menú al hacer clic fuera
+      document.addEventListener('click', function (e) {
+        if (!mobileMenu.classList.contains('hidden') &&
+          !mobileMenu.contains(e.target) &&
+          !mobileMenuButton.contains(e.target)) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

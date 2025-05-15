@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clínica Sur - Centro Médico en Malargüe, Mendoza</title>
+
+  <!-- Meta tags para SEO -->
+  <meta name="description"
+    content="Clínica Sur ofrece atención médica integral y servicios de medicina laboral con los más altos estándares de calidad en Malargüe, Mendoza.">
+  <meta name="keywords"
+    content="clínica, hospital, centro médico, Malargüe, Mendoza, atención médica, medicina laboral">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://clinicasur.com/index.html">
+
+  <!-- Open Graph para redes sociales -->
+  <meta property="og:title" content="Clínica Sur - Centro Médico en Malargüe, Mendoza">
+  <meta property="og:description"
+    content="Atención médica integral y servicios de medicina laboral con los más altos estándares de calidad.">
+  <meta property="og:url" content="https://clinicasur.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./src/LogoClinicaSur.png">
+
+  <!-- Fuentes -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS mediante CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary': '#7c8e91',    /* Color gris azulado del logo */
+            'secondary': '#bcc9a6',  /* Color verde menta del logo */
+            'accent': '#dfe5d0',     /* Versión más clara del verde */
+            'neutral': '#f5f5f5',    /* Gris muy claro para fondos */
+          },
+          fontFamily: {
+            'sans': ['Montserrat', 'sans-serif'],
+            'body': ['Open Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Alpine.js para interactividad -->
+  <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+  <!-- AOS (Animate On Scroll) para animaciones -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+  <!-- GSAP para animaciones avanzadas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+
+  <!-- Swiper para carruseles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <!-- Particles.js para fondos interactivos -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <style>
+    /* Estilos generales */
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+
+    /* Animaciones */
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    /* Interacciones */
+    .service-card:hover .service-icon {
+      transform: rotate(10deg) scale(1.1);
+    }
+
+    .service-icon {
+      transition: transform 0.5s ease;
+    }
+
+    /* Navegación */
+    .nav-item {
+      position: relative;
+      padding-bottom: 2px;
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-item:hover {
+      color: #dfe5d0;
+    }
+
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      height: 2px;
+      width: 100%;
+      background-color: #dfe5d0;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .nav-item:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-item.active::after {
+      transform: scaleX(1);
+    }
+
+    .mobile-nav-item {
+      display: block;
+      padding: 10px;
+      color: white;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-nav-item:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #dfe5d0;
+    }
+
+    .mobile-nav-item.active {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #dfe5d0;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body class="font-body text-gray-800 bg-neutral">
+  <!-- Barra de navegación -->
+  <header class="bg-primary text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex justify-between items-center">
+        <!-- Logo y nombre -->
+        <a href="index.html" class="flex items-center space-x-3 group">
+          <div
+            class="h-10 w-10 bg-white/90 rounded-full flex items-center justify-center shadow-sm transform transition-transform group-hover:scale-110 duration-300 border-2 border-accent/30">
+            <img src="./src/LogoClinicaSur-removebg-preview.png" alt="Logo Clínica Sur" class="h-8 w-8 object-contain">
+          </div>
+          <div>
+            <h1 class="text-xl font-bold">Clínica Sur</h1>
+            <p class="text-xs text-accent">Malargüe, Mendoza</p>
+          </div>
+        </a>
+
+        <!-- Navegación desktop -->
+        <nav class="hidden md:block">
+          <ul class="flex space-x-6">
+            <li><a href="index.html" class="nav-item active">Inicio</a></li>
+            <li><a href="institucional.html" class="nav-item">Institucional</a></li>
+            <li><a href="servicios.html" class="nav-item">Servicios</a></li>
+            <li><a href="medicina-laboral.html" class="nav-item">Medicina Laboral</a></li>
+            <li><a href="contacto.html" class="nav-item">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <!-- Botón menú móvil -->
+        <button id="mobile-menu-button" class="md:hidden text-white hover:text-accent focus:outline-none"
+          aria-label="Menú">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Menú móvil (inicialmente oculto) -->
+      <div id="mobile-menu" class="md:hidden mt-4 pb-2 hidden">
+        <ul class="space-y-2">
+          <li><a href="index.html" class="mobile-nav-item active">Inicio</a></li>
+          <li><a href="institucional.html" class="mobile-nav-item">Institucional</a></li>
+          <li><a href="servicios.html" class="mobile-nav-item">Servicios</a></li>
+          <li><a href="medicina-laboral.html" class="mobile-nav-item">Medicina Laboral</a></li>
+          <li><a href="contacto.html" class="mobile-nav-item">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section con partículas interactivas -->
+    <section class="bg-gradient-to-r from-primary to-secondary text-white py-20 relative overflow-hidden">
+      <div id="particles-js" class="absolute inset-0"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h2 class="text-4xl font-bold mb-4 hero-animation">Cuidamos tu salud con excelencia profesional</h2>
+            <p class="text-lg mb-8 hero-animation">En Clínica Sur ofrecemos atención médica integral y servicios de
+              medicina laboral con los más altos estándares de calidad.</p>
+            <div class="flex flex-wrap gap-4 hero-animation">
+              <a href="servicios.html"
+                class="bg-primary text-white px-6 py-2 rounded-md hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">Nuestros
+                Servicios</a>
+              <a href="contacto.html"
+                class="border border-white px-6 py-2 rounded-md hover:bg-white hover:text-primary transition-all duration-300 transform hover:scale-105 hover:shadow-lg">Contactar</a>
+            </div>
+          </div>
+          <div class="hidden md:block">
+            <div
+              class="bg-accent/30 rounded-lg h-80 w-full flex items-center justify-center overflow-hidden hero-animation float">
+              <div class="text-white text-xl font-semibold">Imagen de profesionales médicos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios Principales con animaciones AOS -->
+    <section class="py-16 bg-neutral">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center mb-12 text-primary" data-aos="fade-up">Nuestros Servicios</h2>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Servicios Clínicos -->
+          <div
+            class="bg-white p-6 rounded-lg shadow-md service-card transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
+            data-aos="fade-right" data-aos-delay="100">
+            <h3 class="text-2xl font-bold mb-4 text-primary">Servicios Clínicos</h3>
+            <p class="mb-6">Ofrecemos atención integral hospitalaria con internación, guardia 24 horas, laboratorio y
+              diagnóstico por imágenes.</p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-secondary mr-2 service-icon" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Internación</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-secondary mr-2 service-icon" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Guardia 24hs</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-secondary mr-2 service-icon" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Laboratorio</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-secondary mr-2 service-icon" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Imágenes
+                  diagnósticas</span>
+              </li>
+            </ul>
+            <a href="servicios.html"
+              class="text-primary font-semibold hover:underline inline-flex items-center group transition-all duration-300">
+              Conocer más
+              <svg class="h-4 w-4 ml-1 transform transition-transform group-hover:translate-x-2" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Medicina Laboral -->
+          <div
+            class="bg-white p-6 rounded-lg shadow-md service-card transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
+            data-aos="fade-left" data-aos-delay="300">
+            <h3 class="text-2xl font-bold mb-4 text-secondary">Medicina Laboral</h3>
+            <p class="mb-6">Brindamos servicios especializados para empresas incluyendo exámenes preocupacionales y
+              periódicos.</p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-primary mr-2 service-icon" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="transition-all duration-300 hover:text-secondary hover:font-semibold">Exámenes
+                  preocupacionales</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-primary mr-2 service-icon" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="transition-all duration-300 hover:text-secondary hover:font-semibold">Chequeos
+                  periódicos</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-primary mr-2 service-icon" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="transition-all duration-300 hover:text-secondary hover:font-semibold">Evaluación de aptitud
+                  laboral</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-primary mr-2 service-icon" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="transition-all duration-300 hover:text-secondary hover:font-semibold">Medicina preventiva
+                  empresarial</span>
+              </li>
+            </ul>
+            <a href="medicina-laboral.html"
+              class="text-secondary font-semibold hover:underline inline-flex items-center group transition-all duration-300">
+              Conocer más
+              <svg class="h-4 w-4 ml-1 transform transition-transform group-hover:translate-x-2" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Estadísticas con contadores animados -->
+    <section class="py-16 bg-accent/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center mb-12 text-primary" data-aos="fade-up">Nuestra Experiencia en Números
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div data-aos="fade-up" data-aos-delay="0" class="transform transition-all duration-300 hover:scale-105">
+            <div class="text-4xl font-bold text-primary mb-2">
+              <span class="counter" data-target="35">0</span>+
+            </div>
+            <p>Años de experiencia</p>
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="100" class="transform transition-all duration-300 hover:scale-105">
+            <div class="text-4xl font-bold text-secondary mb-2">
+              <span class="counter" data-target="50">0</span>+
+            </div>
+            <p>Profesionales médicos</p>
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="200" class="transform transition-all duration-300 hover:scale-105">
+            <div class="text-4xl font-bold text-primary mb-2">
+              <span class="counter" data-target="15000">0</span>+
+            </div>
+            <p>Pacientes atendidos por año</p>
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="300" class="transform transition-all duration-300 hover:scale-105">
+            <div class="text-4xl font-bold text-secondary mb-2">
+              <span class="counter" data-target="24">0</span>/7
+            </div>
+            <p>Atención de guardia</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Por qué elegirnos con animaciones -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center mb-12 text-primary" data-aos="fade-up">¿Por qué elegirnos?</h2>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center p-6" data-aos="zoom-in" data-aos-delay="0">
+            <div
+              class="mx-auto bg-accent rounded-full w-16 h-16 flex items-center justify-center mb-4 transform transition-all duration-500 hover:scale-110 hover:rotate-6">
+              <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-primary">Tecnología de punta</h3>
+            <p>Contamos con equipamiento moderno para diagnósticos precisos y tratamientos efectivos.</p>
+          </div>
+
+          <div class="text-center p-6" data-aos="zoom-in" data-aos-delay="200">
+            <div
+              class="mx-auto bg-accent rounded-full w-16 h-16 flex items-center justify-center mb-4 transform transition-all duration-500 hover:scale-110 hover:rotate-6">
+              <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-primary">Profesionales calificados</h3>
+            <p>Nuestro equipo médico está formado por especialistas con amplia experiencia en sus campos.</p>
+          </div>
+
+          <div class="text-center p-6" data-aos="zoom-in" data-aos-delay="400">
+            <div
+              class="mx-auto bg-accent rounded-full w-16 h-16 flex items-center justify-center mb-4 transform transition-all duration-500 hover:scale-110 hover:rotate-6">
+              <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-primary">Atención personalizada</h3>
+            <p>Nos enfocamos en una relación cercana con nuestros pacientes, brindando un servicio humano y de calidad.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call To Action -->
+    <section class="py-16 bg-gradient-to-r from-primary to-secondary text-white relative overflow-hidden">
+      <div class="absolute inset-0 bg-opacity-20 bg-black"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <h2 class="text-3xl font-bold mb-6" data-aos="zoom-in">¿Necesita atención médica?</h2>
+        <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">Nuestro equipo de
+          profesionales está listo para brindarle la mejor atención. Contáctenos para agendar una consulta.</p>
+        <div data-aos="fade-up" data-aos-delay="400">
+          <a href="contacto.html"
+            class="bg-white text-primary px-8 py-3 rounded-md font-bold transition-all duration-300 hover:bg-opacity-90 hover:shadow-lg hover:scale-105 transform inline-block">Contactar
+            ahora</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-primary text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Clínica Sur</h3>
+          <p class="mb-2">Sirviendo a la comunidad de Malargüe con excelencia médica.</p>
+          <p>© 2025 Clínica Sur. Todos los derechos reservados.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Contacto</h3>
+          <p class="mb-2">Dirección: Villegas Oeste 97, Malargüe, Mendoza</p>
+          <p class="mb-2">Urgencias: (260) 447-0326</p>
+          <p class="mb-2">Administración: (260) 447-0326</p>
+          <p class="mb-2">Guardia: (260) 432-2579</p>
+          <p>Email: clinicasuradm@clinicasur.com.ar</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Horarios</h3>
+          <p class="mb-2">Atención administrativa: Lunes a Viernes 8:00 - 18:00</p>
+          <p>Guardia médica: 24 horas, todos los días</p>
+        </div>
+      </div>
+
+      <!-- Línea separadora -->
+      <div class="border-t border-white/20 mt-8 pt-4 text-center">
+        <p class="text-sm text-white/80">
+          Sitio Desarrollado por
+          <a href="https://tearsdev.netlify.app/" target="_blank" rel="noopener noreferrer"
+            class="font-medium hover:text-accent transition-colors duration-300 hover:underline">
+            TearsDev
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Inicializar AOS (Animate On Scroll)
+      AOS.init({
+        duration: 800,
+        once: false,
+        mirror: true,
+        offset: 120,
+        easing: 'ease-in-out'
+      });
+
+      // Animar elementos del hero con GSAP
+      gsap.from(".hero-animation", {
+        opacity: 0,
+        y: 50,
+        stagger: 0.2,
+        duration: 1,
+        delay: 0.5,
+        ease: "power3.out"
+      });
+
+      // Inicializar Particles.js para el fondo del hero
+      if (document.getElementById('particles-js')) {
+        particlesJS('particles-js', {
+          particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: "#ffffff" },
+            opacity: { value: 0.5, random: false },
+            size: { value: 3, random: true },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: "#ffffff",
+              opacity: 0.4,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 2,
+              direction: "none",
+              random: false,
+              straight: false,
+              out_mode: "out",
+              bounce: false
+            }
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: { enable: true, mode: "grab" },
+              onclick: { enable: true, mode: "push" }
+            }
+          }
+        });
+      }
+
+      // Menú móvil
+      const menuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', function () {
+          mobileMenu.classList.toggle('hidden');
+        });
+
+        // Cerrar menú al hacer clic fuera
+        document.addEventListener('click', function (e) {
+          if (!mobileMenu.classList.contains('hidden') &&
+            !mobileMenu.contains(e.target) &&
+            !menuButton.contains(e.target)) {
+            mobileMenu.classList.add('hidden');
+          }
+        });
+      }
+
+      // Marca la página actual como activa
+      const currentPath = window.location.pathname;
+      document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(link => {
+        const href = link.getAttribute('href');
+        if (currentPath.endsWith(href) ||
+          (currentPath.endsWith('/') && href === 'index.html') ||
+          (currentPath === '' && href === 'index.html')) {
+          link.classList.add('active');
+        }
+      });
+
+      // Animación para contadores
+      const counters = document.querySelectorAll('.counter');
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        let count = 0;
+        const updateCounter = () => {
+          const increment = target / 100;
+          if (count < target) {
+            count += increment;
+            counter.textContent = Math.ceil(count);
+            setTimeout(updateCounter, 20);
+          } else {
+            counter.textContent = target;
+          }
+        };
+
+        // Configurar ScrollTrigger para iniciar cuando el contador sea visible
+        ScrollTrigger.create({
+          trigger: counter,
+          start: "top 80%",
+          onEnter: () => updateCounter()
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

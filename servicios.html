@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios Clínicos - Clínica Sur Malargüe</title>
+  
+  <!-- Meta tags para SEO -->
+  <meta name="description" content="Conozca los servicios clínicos de Clínica Sur en Malargüe: guardia 24hs, internación, laboratorio, diagnóstico por imágenes y múltiples especialidades médicas.">
+  <meta name="keywords" content="servicios médicos, clínica, hospital, guardia médica, internación, laboratorio, Malargüe, Mendoza">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://clinicasur.com/servicios.html">
+  
+  <!-- Open Graph para redes sociales -->
+  <meta property="og:title" content="Servicios Clínicos - Clínica Sur Malargüe">
+  <meta property="og:description" content="Amplia gama de servicios médicos con la más alta calidad para el cuidado integral de su salud.">
+  <meta property="og:url" content="https://clinicasur.com/servicios.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./src/LogoClinicaSur.png">
+
+  <!-- Fuentes -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS mediante CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary': '#7c8e91',    /* Color gris azulado del logo */
+            'secondary': '#bcc9a6',  /* Color verde menta del logo */
+            'accent': '#dfe5d0',     /* Versión más clara del verde */
+            'neutral': '#f5f5f5',    /* Gris muy claro para fondos */
+          },
+          fontFamily: {
+            'sans': ['Montserrat', 'sans-serif'],
+            'body': ['Open Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Alpine.js para interactividad -->
+  <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+  <!-- AOS (Animate On Scroll) para animaciones al hacer scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+  <!-- GSAP para animaciones avanzadas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+
+  <!-- Swiper para carruseles modernos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <!-- Particles.js para fondos interactivos -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <style>
+    /* Estilos para animaciones personalizadas */
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    
+    body {
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .tab-content {
+      transition: all 0.5s ease-in-out;
+    }
+
+    .tab-content.hidden {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .tab-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .specialty-card:hover .specialty-icon {
+      transform: rotate(10deg) scale(1.1);
+    }
+
+    .specialty-icon {
+      transition: transform 0.5s ease;
+    }
+
+    .tab-button {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tab-button::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: currentColor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    .tab-button.active::after,
+    .tab-button:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Estilos para el menú de navegación */
+    .nav-item {
+      position: relative;
+      padding-bottom: 2px;
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-item:hover {
+      color: #dfe5d0;
+    }
+
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      height: 2px;
+      width: 100%;
+      background-color: #dfe5d0;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .nav-item:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-item.active::after {
+      transform: scaleX(1);
+    }
+
+    .mobile-nav-item {
+      display: block;
+      padding: 10px;
+      color: white;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-nav-item:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #dfe5d0;
+    }
+
+    .mobile-nav-item.active {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #dfe5d0;
+      font-weight: 600;
+    }
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+      font-size: 16px !important;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      transition: all 0.3s ease;
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background-color: rgba(255, 255, 255, 0.9);
+      transform: translateY(-50%) scale(1.1);
+    }
+  </style>
+</head>
+
+<body class="font-body text-gray-800 bg-neutral">
+  <!-- Barra de navegación -->
+  <header class="bg-primary text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex justify-between items-center">
+        <!-- Logo y nombre -->
+        <div class="flex items-center space-x-2">
+          <a href="index.html" class="flex items-center space-x-3 group">
+          <div
+            class="h-10 w-10 bg-white/90 rounded-full flex items-center justify-center shadow-sm transform transition-transform group-hover:scale-110 duration-300 border-2 border-accent/30">
+            <img src="./src/LogoClinicaSur-removebg-preview.png" alt="Logo Clínica Sur" class="h-8 w-8 object-contain">
+          </div>
+          <div>
+            <h1 class="text-xl font-bold">Clínica Sur</h1>
+            <p class="text-xs text-accent">Malargüe, Mendoza</p>
+          </div>
+        </a>
+        </div>
+
+        <!-- Navegación para desktop -->
+        <nav class="hidden md:block">
+          <ul class="flex space-x-6">
+            <li><a href="index.html" class="nav-item">Inicio</a></li>
+            <li><a href="institucional.html" class="nav-item">Institucional</a></li>
+            <li><a href="servicios.html" class="nav-item active">Servicios</a></li>
+            <li><a href="medicina-laboral.html" class="nav-item">Medicina Laboral</a></li>
+            <li><a href="contacto.html" class="nav-item">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <!-- Botón menú móvil -->
+        <button id="mobile-menu-button" class="md:hidden text-white hover:text-accent focus:outline-none" aria-label="Menú">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Menú móvil (inicialmente oculto) -->
+      <div id="mobile-menu" class="md:hidden mt-4 pb-2 hidden">
+        <ul class="space-y-2">
+          <li><a href="index.html" class="mobile-nav-item">Inicio</a></li>
+          <li><a href="institucional.html" class="mobile-nav-item">Institucional</a></li>
+          <li><a href="servicios.html" class="mobile-nav-item active">Servicios</a></li>
+          <li><a href="medicina-laboral.html" class="mobile-nav-item">Medicina Laboral</a></li>
+          <li><a href="contacto.html" class="mobile-nav-item">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Banner de servicios con partículas -->
+    <section class="bg-gradient-to-r from-primary to-secondary text-white py-16 relative overflow-hidden">
+      <div id="particles-js" class="absolute inset-0"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-3xl" data-aos="fade-right">
+          <h2 class="text-4xl font-bold mb-4 hero-animation">Servicios Clínicos</h2>
+          <p class="text-lg hero-animation">En Clínica Sur ofrecemos una amplia gama de servicios médicos con la más
+            alta calidad para el cuidado integral de su salud.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicio Principal: Guardia 24hs -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div data-aos="fade-right">
+            <span class="text-secondary font-semibold">Servicio destacado</span>
+            <h3 class="text-3xl font-bold mb-4 text-primary mt-2">Guardia Médica 24 horas</h3>
+            <p class="mb-4">Contamos con un equipo médico de guardia permanente, disponible las 24 horas todos los días
+              del año, para atender urgencias y emergencias médicas con rapidez y profesionalismo.</p>
+            <p class="mb-6">Nuestra guardia está equipada con tecnología de avanzada para diagnósticos rápidos y
+              tratamientos oportunos en situaciones críticas.</p>
+
+            <div
+              class="bg-neutral p-4 rounded-lg border-l-4 border-secondary mb-6 transform transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+              <h4 class="font-bold text-primary mb-2">En caso de emergencia</h4>
+              <p>Llame al <span class="font-bold">(260) 432-2579</span> o acuda directamente a nuestra guardia ubicada
+                en la entrada principal de la clínica.</p>
+            </div>
+
+            <ul class="space-y-2">
+              <li class="flex items-start" data-aos="fade-up" data-aos-delay="100">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5 specialty-icon" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Atención inmediata de
+                  emergencias</span>
+              </li>
+              <li class="flex items-start" data-aos="fade-up" data-aos-delay="200">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5 specialty-icon" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Personal médico
+                  especializado</span>
+              </li>
+              <li class="flex items-start" data-aos="fade-up" data-aos-delay="300">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5 specialty-icon" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Equipamiento de última
+                  generación</span>
+              </li>
+              <li class="flex items-start" data-aos="fade-up" data-aos-delay="400">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5 specialty-icon" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Sala de observación y
+                  estabilización</span>
+              </li>
+            </ul>
+          </div>
+          <div
+            class="bg-neutral rounded-lg p-6 shadow-md transform transition-all duration-500 hover:shadow-xl hover:-translate-y-2"
+            data-aos="fade-left" data-aos-delay="200">
+            <div class="bg-accent/30 rounded-lg h-80 w-full flex items-center justify-center float">
+              <div class="text-primary text-xl font-semibold">Imagen de guardia médica</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios principales con tabs animados -->
+    <section class="py-16 bg-neutral">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h3 class="text-2xl font-bold mb-8 text-primary text-center" data-aos="fade-up">Nuestros Servicios Principales
+        </h3>
+
+        <div class="mb-8 bg-white rounded-lg shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+          <div x-data="{activeTab: 'internacion'}" class="flex flex-col">
+            <div class="flex flex-wrap">
+              <button @click="activeTab = 'internacion'"
+                :class="{'bg-primary text-white': activeTab === 'internacion', 'hover:bg-gray-100': activeTab !== 'internacion'}"
+                class="tab-button flex-1 py-4 px-6 font-semibold transition-all duration-300"
+                :class="{'active': activeTab === 'internacion'}">
+                Internación
+              </button>
+              <button @click="activeTab = 'laboratorio'"
+                :class="{'bg-primary text-white': activeTab === 'laboratorio', 'hover:bg-gray-100': activeTab !== 'laboratorio'}"
+                class="tab-button flex-1 py-4 px-6 font-semibold transition-all duration-300"
+                :class="{'active': activeTab === 'laboratorio'}">
+                Laboratorio
+              </button>
+              <button @click="activeTab = 'imagenes'"
+                :class="{'bg-primary text-white': activeTab === 'imagenes', 'hover:bg-gray-100': activeTab !== 'imagenes'}"
+                class="tab-button flex-1 py-4 px-6 font-semibold transition-all duration-300"
+                :class="{'active': activeTab === 'imagenes'}">
+                Diagnóstico por Imágenes
+              </button>
+            </div>
+
+            <div class="p-6">
+              <!-- Internación -->
+              <div x-show="activeTab === 'internacion'" x-transition:enter="transition ease-out duration-500"
+                x-transition:enter-start="opacity-0 transform translate-y-10"
+                x-transition:enter-end="opacity-100 transform translate-y-0"
+                class="grid md:grid-cols-2 gap-6 tab-content">
+                <div>
+                  <h4 class="text-xl font-bold mb-4 text-primary">Servicio de Internación</h4>
+                  <p class="mb-4">Nuestro servicio de internación cuenta con habitaciones confortables y equipadas con
+                    tecnología médica de última generación para la atención integral del paciente.</p>
+                  <p class="mb-6">Contamos con personal médico y de enfermería altamente capacitado para brindar una
+                    atención personalizada y de calidad las 24 horas del día.</p>
+                  <ul class="space-y-2">
+                    <li class="flex items-start">
+                      <svg class="h-5 w-5 text-secondary mr-2 mt-0.5 specialty-icon" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Habitaciones
+                        privadas y compartidas</span>
+                    </li>
+                    <li class="flex items-start">
+                      <svg class="h-5 w-5 text-secondary mr-2 mt-0.5 specialty-icon" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Monitoreo
+                        permanente de pacientes</span>
+                    </li>
+                    <li class="flex items-start">
+                      <svg class="h-5 w-5 text-secondary mr-2 mt-0.5 specialty-icon" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Atención médica y
+                        de enfermería 24hs</span>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="bg-accent/30 rounded-lg h-64 flex items-center justify-center overflow-hidden transform transition-all duration-500 hover:scale-105">
+                  <div class="text-primary text-xl font-semibold">Imagen de habitación de internación</div>
+                </div>
+              </div>
+
+              <!-- Laboratorio -->
+              <div x-show="activeTab === 'laboratorio'" x-transition:enter="transition ease-out duration-500"
+                x-transition:enter-start="opacity-0 transform translate-y-10"
+                x-transition:enter-end="opacity-100 transform translate-y-0"
+                class="grid md:grid-cols-2 gap-6 tab-content">
+                <div>
+                  <h4 class="text-xl font-bold mb-4 text-primary">Laboratorio de Análisis Clínicos</h4>
+                  <p class="mb-4">Nuestro laboratorio ofrece una amplia gama de análisis clínicos con tecnología de
+                    vanguardia y profesionales altamente calificados.</p>
+                  <p class="mb-6">Realizamos desde análisis de rutina hasta estudios especializados, con resultados
+                    precisos en el menor tiempo posible.</p>
+                  <ul class="space-y-2">
+                    <li class="flex items-start">
+                      <svg class="h-5 w-5 text-secondary mr-2 mt-0.5 specialty-icon" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Análisis de
+                        sangre y orina</span>
+                    </li>
+                    <li class="flex items-start">
+                      <svg class="h-5 w-5 text-secondary mr-2 mt-0.5 specialty-icon" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Pruebas
+                        bioquímicas y hormonales</span>
+                    </li>
+                    <li class="flex items-start">
+                      <svg class="h-5 w-5 text-secondary mr-2 mt-0.5 specialty-icon" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Resultados online
+                        y por email</span>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="bg-accent/30 rounded-lg h-64 flex items-center justify-center overflow-hidden transform transition-all duration-500 hover:scale-105">
+                  <div class="text-primary text-xl font-semibold">Imagen de laboratorio clínico</div>
+                </div>
+              </div>
+
+              <!-- Diagnóstico por Imágenes -->
+              <div x-show="activeTab === 'imagenes'" x-transition:enter="transition ease-out duration-500"
+                x-transition:enter-start="opacity-0 transform translate-y-10"
+                x-transition:enter-end="opacity-100 transform translate-y-0"
+                class="grid md:grid-cols-2 gap-6 tab-content">
+                <div>
+                  <h4 class="text-xl font-bold mb-4 text-primary">Diagnóstico por Imágenes</h4>
+                  <p class="mb-4">Contamos con equipamiento de última generación para estudios de diagnóstico por
+                    imágenes, garantizando precisión y calidad en los resultados.</p>
+                  <p class="mb-6">Nuestros especialistas en radiología interpretan los estudios con profesionalismo y
+                    experiencia.</p>
+                  <ul class="space-y-2">
+                    <li class="flex items-start">
+                      <svg class="h-5 w-5 text-secondary mr-2 mt-0.5 specialty-icon" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Radiografías
+                        digitales</span>
+                    </li>
+                    <li class="flex items-start">
+                      <svg class="h-5 w-5 text-secondary mr-2 mt-0.5 specialty-icon" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Ecografías y
+                        ecodoppler</span>
+                    </li>
+                    <li class="flex items-start">
+                      <svg class="h-5 w-5 text-secondary mr-2 mt-0.5 specialty-icon" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="transition-all duration-300 hover:text-primary hover:font-semibold">Tomografía
+                        computarizada</span>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="bg-accent/30 rounded-lg h-64 flex items-center justify-center overflow-hidden transform transition-all duration-500 hover:scale-105">
+                  <div class="text-primary text-xl font-semibold">Imagen de equipos de diagnóstico</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Especialidades médicas con animaciones -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h3 class="text-2xl font-bold mb-8 text-primary text-center" data-aos="fade-up">Especialidades Médicas</h3>
+
+        <div class="swiper specialty-swiper" data-aos="fade-up" data-aos-delay="200">
+          <div class="swiper-wrapper">
+            <!-- Cardiología -->
+            <div class="swiper-slide p-2">
+              <div
+                class="bg-neutral rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 h-full transform hover:-translate-y-2 specialty-card">
+                <div
+                  class="bg-accent rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 specialty-icon transition-all duration-500">
+                  <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </div>
+                <h4 class="text-lg font-bold mb-2 text-primary text-center">Cardiología</h4>
+                <p class="text-sm text-center">Diagnóstico y tratamiento de enfermedades cardiovasculares con tecnología
+                  de punta.</p>
+              </div>
+            </div>
+
+            <!-- Traumatología -->
+            <div class="swiper-slide p-2">
+              <div
+                class="bg-neutral rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 h-full transform hover:-translate-y-2 specialty-card">
+                <div
+                  class="bg-accent rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 specialty-icon transition-all duration-500">
+                  <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                  </svg>
+                </div>
+                <h4 class="text-lg font-bold mb-2 text-primary text-center">Traumatología</h4>
+                <p class="text-sm text-center">Atención especializada en lesiones óseas, articulares y musculares.</p>
+              </div>
+            </div>
+
+            <!-- Pediatría -->
+            <div class="swiper-slide p-2">
+              <div
+                class="bg-neutral rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 h-full transform hover:-translate-y-2 specialty-card">
+                <div
+                  class="bg-accent rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 specialty-icon transition-all duration-500">
+                  <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h4 class="text-lg font-bold mb-2 text-primary text-center">Pediatría</h4>
+                <p class="text-sm text-center">Cuidado integral de la salud de niños y adolescentes en un ambiente
+                  amigable.</p>
+              </div>
+            </div>
+
+            <!-- Ginecología -->
+            <div class="swiper-slide p-2">
+              <div
+                class="bg-neutral rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 h-full transform hover:-translate-y-2 specialty-card">
+                <div
+                  class="bg-accent rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 specialty-icon transition-all duration-500">
+                  <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                </div>
+                <h4 class="text-lg font-bold mb-2 text-primary text-center">Ginecología</h4>
+                <p class="text-sm text-center">Atención especializada en salud femenina, desde la adolescencia hasta la
+                  adultez mayor.</p>
+              </div>
+            </div>
+
+            <!-- Neurología -->
+            <div class="swiper-slide p-2">
+              <div
+                class="bg-neutral rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 h-full transform hover:-translate-y-2 specialty-card">
+                <div
+                  class="bg-accent rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 specialty-icon transition-all duration-500">
+                  <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                  </svg>
+                </div>
+                <h4 class="text-lg font-bold mb-2 text-primary text-center">Neurología</h4>
+                <p class="text-sm text-center">Diagnóstico y tratamiento de trastornos del sistema nervioso central y
+                  periférico.</p>
+              </div>
+            </div>
+
+            <!-- Dermatología -->
+            <div class="swiper-slide p-2">
+              <div
+                class="bg-neutral rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 h-full transform hover:-translate-y-2 specialty-card">
+                <div
+                  class="bg-accent rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 specialty-icon transition-all duration-500">
+                  <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                  </svg>
+                </div>
+                <h4 class="text-lg font-bold mb-2 text-primary text-center">Dermatología</h4>
+                <p class="text-sm text-center">Atención especializada en afecciones de la piel, cabello y uñas.</p>
+              </div>
+            </div>
+
+            <!-- Oftalmología -->
+            <div class="swiper-slide p-2">
+              <div
+                class="bg-neutral rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 h-full transform hover:-translate-y-2 specialty-card">
+                <div
+                  class="bg-accent rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 specialty-icon transition-all duration-500">
+                  <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                </div>
+                <h4 class="text-lg font-bold mb-2 text-primary text-center">Oftalmología</h4>
+                <p class="text-sm text-center">Diagnóstico y tratamiento de problemas visuales y enfermedades oculares.
+                </p>
+              </div>
+            </div>
+
+            <!-- Más especialidades -->
+            <div class="swiper-slide p-2">
+              <div
+                class="bg-neutral rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 h-full transform hover:-translate-y-2 specialty-card">
+                <div
+                  class="bg-accent rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 specialty-icon transition-all duration-500">
+                  <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                  </svg>
+                </div>
+                <h4 class="text-lg font-bold mb-2 text-primary text-center">Más Especialidades</h4>
+                <p class="text-sm text-center">Contamos con un amplio equipo de especialistas para cubrir todas sus
+                  necesidades médicas.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botones de navegación mejorados -->
+          <div
+            class="swiper-button-prev flex justify-center items-center text-primary absolute top-1/2 -left-2 z-10 transform -translate-y-1/2 bg-white bg-opacity-70 w-8 h-8 rounded-full shadow-md">
+          </div>
+          <div
+            class="swiper-button-next flex justify-center items-center text-primary absolute top-1/2 -right-2 z-10 transform -translate-y-1/2 bg-white bg-opacity-70 w-8 h-8 rounded-full shadow-md">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Equipos e Instalaciones con contador -->
+    <section class="py-16 bg-accent/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h3 class="text-2xl font-bold mb-12 text-primary text-center" data-aos="fade-up">Tecnología e Instalaciones</h3>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div data-aos="fade-up" data-aos-delay="0" class="transform transition-all duration-300 hover:scale-105">
+            <div class="text-4xl font-bold text-primary mb-2">
+              <span class="counter" data-target="25">0</span>+
+            </div>
+            <p>Consultorios médicos</p>
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="100" class="transform transition-all duration-300 hover:scale-105">
+            <div class="text-4xl font-bold text-secondary mb-2">
+              <span class="counter" data-target="15">0</span>+
+            </div>
+            <p>Equipos de diagnóstico</p>
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="200" class="transform transition-all duration-300 hover:scale-105">
+            <div class="text-4xl font-bold text-primary mb-2">
+              <span class="counter" data-target="30">0</span>+
+            </div>
+            <p>Camas de internación</p>
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="300" class="transform transition-all duration-300 hover:scale-105">
+            <div class="text-4xl font-bold text-secondary mb-2">
+              <span class="counter" data-target="2000">0</span>+
+            </div>
+            <p>Pacientes mensuales</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action con partículas -->
+    <section class="py-16 bg-gradient-to-r from-primary to-secondary text-white relative overflow-hidden">
+      <div id="particles-cta" class="absolute inset-0"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <h3 class="text-2xl font-bold mb-4" data-aos="zoom-in">¿Necesita atención médica?</h3>
+        <p class="text-lg mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">Nuestro equipo de
+          profesionales está listo para brindarle la mejor atención. Contáctenos para agendar una consulta o solicitar
+          más información.</p>
+        <div data-aos="fade-up" data-aos-delay="400">
+          <a href="contacto.html"
+            class="bg-white text-primary px-8 py-3 rounded-md font-bold transition-all duration-300 hover:bg-opacity-90 hover:shadow-lg hover:scale-105 transform inline-block">Contactar
+            ahora</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-primary text-white py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">Clínica Sur</h3>
+        <p class="mb-2">Sirviendo a la comunidad de Malargüe con excelencia médica.</p>
+        <p>© 2025 Clínica Sur. Todos los derechos reservados.</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold mb-4">Contacto</h3>
+        <p class="mb-2">Dirección: Villegas Oeste 97, Malargüe, Mendoza</p>
+        <p class="mb-2">Urgencias: (260) 447-0326</p>
+        <p class="mb-2">Administración: (260) 447-0326</p>
+        <p class="mb-2">Guardia: (260) 432-2579</p>
+        <p>Email: clinicasuradm@clinicasur.com.ar</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold mb-4">Horarios</h3>
+        <p class="mb-2">Atención administrativa: Lunes a Viernes 8:00 - 18:00</p>
+        <p>Guardia médica: 24 horas, todos los días</p>
+      </div>
+    </div>
+    
+    <!-- Línea separadora -->
+    <div class="border-t border-white/20 mt-8 pt-4 text-center">
+      <p class="text-sm text-white/80">
+        Sitio Desarrollado por 
+        <a href="https://tearsdev.netlify.app/" target="_blank" rel="noopener noreferrer" 
+           class="font-medium hover:text-accent transition-colors duration-300 hover:underline">
+          TearsDev
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Inicializar AOS (Animate On Scroll)
+      AOS.init({
+        duration: 800,
+        once: false,
+        mirror: true,
+        offset: 120,
+        easing: 'ease-in-out'
+      });
+
+      // Animación del header con GSAP
+      gsap.from("#navbar", {
+        y: -100,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+      });
+
+      // Animar elementos del hero
+      gsap.from(".hero-animation", {
+        opacity: 0,
+        y: 50,
+        stagger: 0.2,
+        duration: 1,
+        delay: 0.5,
+        ease: "power3.out"
+      });
+
+      // Inicializar Particles.js para el fondo del hero
+      if (document.getElementById('particles-js')) {
+        particlesJS('particles-js', {
+          particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: "#ffffff" },
+            opacity: { value: 0.5, random: false },
+            size: { value: 3, random: true },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: "#ffffff",
+              opacity: 0.4,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 2,
+              direction: "none",
+              random: false,
+              straight: false,
+              out_mode: "out",
+              bounce: false
+            }
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: { enable: true, mode: "grab" },
+              onclick: { enable: true, mode: "push" }
+            }
+          }
+        });
+      }
+
+      // Inicializar Particles.js para el CTA
+      if (document.getElementById('particles-cta')) {
+        particlesJS('particles-cta', {
+          particles: {
+            number: { value: 60, density: { enable: true, value_area: 800 } },
+            color: { value: "#ffffff" },
+            opacity: { value: 0.3, random: false },
+            size: { value: 3, random: true },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: "#ffffff",
+              opacity: 0.2,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 1,
+              direction: "none",
+              random: true,
+              straight: false,
+              out_mode: "out",
+              bounce: false
+            }
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: { enable: true, mode: "grab" },
+              onclick: { enable: true, mode: "push" }
+            }
+          }
+        });
+      }
+
+      // Inicializar Swiper para carrusel de especialidades
+      if (document.querySelector('.specialty-swiper')) {
+        new Swiper('.specialty-swiper', {
+          slidesPerView: 1,
+          spaceBetween: 20,
+          loop: true,
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          breakpoints: {
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 30,
+            },
+          },
+        });
+      }
+
+      // Animación para contadores
+      const counters = document.querySelectorAll('.counter');
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        let count = 0;
+        const updateCounter = () => {
+          const increment = target / 100;
+          if (count < target) {
+            count += increment;
+            counter.textContent = Math.ceil(count);
+            setTimeout(updateCounter, 20);
+          } else {
+            counter.textContent = target;
+          }
+        };
+
+        // Configurar ScrollTrigger para iniciar cuando el contador sea visible
+        ScrollTrigger.create({
+          trigger: counter,
+          start: "top 80%",
+          onEnter: () => updateCounter()
+        });
+      });
+
+      // Script para el menú móvil
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      // Marca la página actual como activa
+      const currentPath = window.location.pathname;
+      document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(link => {
+        const href = link.getAttribute('href');
+        if (currentPath.endsWith(href) ||
+          (currentPath.endsWith('/') && href === 'index.html') ||
+          (currentPath === '' && href === 'index.html')) {
+          link.classList.add('active');
+        }
+      });
+
+      // Toggle del menú móvil
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+          if (mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.remove('hidden');
+          } else {
+            mobileMenu.classList.add('hidden');
+          }
+        });
+        
+        // Cerrar menú al hacer clic fuera
+        document.addEventListener('click', function(e) {
+          if (!mobileMenu.classList.contains('hidden') && 
+              !mobileMenu.contains(e.target) && 
+              !mobileMenuButton.contains(e.target)) {
+            mobileMenu.classList.add('hidden');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

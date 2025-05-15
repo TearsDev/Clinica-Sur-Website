@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicina Laboral - Clínica Sur</title>
+  
+  <!-- Meta tags para SEO -->
+  <meta name="description" content="Servicios de medicina laboral en Malargüe. Exámenes preocupacionales, periódicos, de egreso y más para empresas y trabajadores.">
+  <meta name="keywords" content="medicina laboral, exámenes preocupacionales, salud ocupacional, Malargüe, Mendoza">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://clinicasur.com/medicina-laboral.html">
+  
+  <!-- Open Graph para redes sociales -->
+  <meta property="og:title" content="Medicina Laboral - Clínica Sur Malargüe">
+  <meta property="og:description" content="Servicios especializados de medicina laboral para empresas y trabajadores.">
+  <meta property="og:url" content="https://clinicasur.com/medicina-laboral.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./src/LogoClinicaSur.png">
+  
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS mediante CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary': '#7c8e91',
+            'secondary': '#bcc9a6',
+            'accent': '#dfe5d0',
+            'neutral': '#f5f5f5',
+          },
+          fontFamily: {
+            'sans': ['Montserrat', 'sans-serif'],
+            'body': ['Open Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Alpine.js para interactividad -->
+  <script src="https://unpkg.com/alpinejs" defer></script>
+  
+  <!-- AOS (Animate On Scroll) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+  <!-- GSAP para animaciones -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+
+  <!-- Swiper para carruseles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  
+  <!-- Particles.js para fondos interactivos -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  
+  <style>
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    
+    body {
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .service-icon {
+      transition: transform 0.5s ease;
+    }
+    
+    .service-card:hover .service-icon {
+      transform: rotate(10deg) scale(1.2);
+    }
+    
+    .icon-rotate {
+      transition: transform 0.5s ease;
+    }
+    
+    .icon-rotate:hover {
+      transform: rotate(10deg) scale(1.1);
+    }
+    
+    .list-item {
+      transition: transform 0.3s ease;
+    }
+    
+    .list-item:hover {
+      transform: translateX(5px);
+    }
+    
+    .btn-shine {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-shine:after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -100%;
+      width: 20%;
+      height: 200%;
+      opacity: 0;
+      transform: rotate(30deg);
+      background: rgba(255, 255, 255, 0.13);
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.13) 77%, rgba(255, 255, 255, 0.5) 92%, rgba(255, 255, 255, 0.0) 100%);
+    }
+    
+    .btn-shine:hover:after {
+      opacity: 1;
+      left: 130%;
+      transition: left 0.7s ease;
+    }
+    
+    .nav-item {
+      position: relative;
+      padding-bottom: 2px;
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-item:hover {
+      color: #dfe5d0;
+    }
+
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      height: 2px;
+      width: 100%;
+      background-color: #dfe5d0;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .nav-item:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-item.active::after {
+      transform: scaleX(1);
+    }
+
+    .mobile-nav-item {
+      display: block;
+      padding: 10px;
+      color: white;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-nav-item:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #dfe5d0;
+    }
+
+    .mobile-nav-item.active {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #dfe5d0;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="font-body text-gray-800 bg-neutral">
+  <header class="bg-primary text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex justify-between items-center">
+        <!-- Logo y nombre -->
+        <div class="flex items-center space-x-2">
+          <a href="index.html" class="flex items-center space-x-3 group">
+          <div
+            class="h-10 w-10 bg-white/90 rounded-full flex items-center justify-center shadow-sm transform transition-transform group-hover:scale-110 duration-300 border-2 border-accent/30">
+            <img src="./src/LogoClinicaSur-removebg-preview.png" alt="Logo Clínica Sur" class="h-8 w-8 object-contain">
+          </div>
+          <div>
+            <h1 class="text-xl font-bold">Clínica Sur</h1>
+            <p class="text-xs text-accent">Malargüe, Mendoza</p>
+          </div>
+        </a>
+        </div>
+        
+        <!-- Navegación para desktop -->
+        <nav class="hidden md:block">
+          <ul class="flex space-x-6">
+            <li><a href="index.html" class="nav-item">Inicio</a></li>
+            <li><a href="institucional.html" class="nav-item">Institucional</a></li>
+            <li><a href="servicios.html" class="nav-item">Servicios</a></li>
+            <li><a href="medicina-laboral.html" class="nav-item">Medicina Laboral</a></li>
+            <li><a href="contacto.html" class="nav-item">Contacto</a></li>
+          </ul>
+        </nav>
+        
+        <!-- Botón menú móvil -->
+        <button id="mobile-menu-button" class="md:hidden text-white hover:text-accent focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Menú móvil (inicialmente oculto) -->
+      <div id="mobile-menu" class="md:hidden mt-4 pb-2 hidden">
+        <ul class="space-y-2">
+          <li><a href="index.html" class="mobile-nav-item">Inicio</a></li>
+          <li><a href="institucional.html" class="mobile-nav-item">Institucional</a></li>
+          <li><a href="servicios.html" class="mobile-nav-item">Servicios</a></li>
+          <li><a href="medicina-laboral.html" class="mobile-nav-item">Medicina Laboral</a></li>
+          <li><a href="contacto.html" class="mobile-nav-item">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Banner de la sección con partículas -->
+    <section class="bg-gradient-to-r from-primary to-secondary text-white py-16 relative overflow-hidden">
+      <div id="particles-js" class="absolute inset-0"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-3xl" data-aos="fade-right">
+          <h2 class="text-4xl font-bold mb-4">Medicina Laboral</h2>
+          <p class="text-lg">Brindamos soluciones integrales en medicina laboral, ayudando a las empresas a mantener la salud y seguridad de sus trabajadores y cumplir con la normativa vigente.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Descripción del servicio con animaciones -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div data-aos="fade-right" data-aos-delay="100">
+            <h3 class="text-2xl font-bold mb-4 text-secondary">Medicina Laboral de Excelencia</h3>
+            <p class="mb-4">En <strong>Clínica Sur</strong> contamos con un equipo multidisciplinario de profesionales especializados en medicina laboral, dedicados a brindar servicios de calidad tanto para empresas como para trabajadores.</p>
+            <p class="mb-4">Nuestra área de medicina laboral cuenta con instalaciones modernas y equipamiento de última generación para realizar todos los exámenes requeridos de forma eficiente y precisa.</p>
+            <p>Nos enfocamos en la prevención, detección temprana y seguimiento de enfermedades laborales, contribuyendo a la salud y bienestar de los trabajadores y al cumplimiento de las normativas por parte de las empresas.</p>
+          </div>
+          <div class="bg-neutral rounded-lg p-6 shadow-md transform transition hover:scale-105 duration-500" data-aos="fade-left" data-aos-delay="300">
+            <div class="bg-accent/30 rounded-lg h-80 w-full flex items-center justify-center float">
+              <div class="text-primary text-xl font-semibold">Imagen de consultorio de medicina laboral</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nuestros Exámenes con animaciones -->
+    <section class="py-16 bg-neutral" data-aos="fade-up" data-aos-delay="100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h3 class="text-2xl font-bold mb-8 text-primary text-center">Exámenes Médicos Laborales</h3>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Preocupacionales -->
+          <div class="bg-white rounded-lg shadow-md p-6 service-card">
+            <div class="bg-primary/10 p-4 rounded-lg mb-4">
+              <svg class="h-10 w-10 text-primary mx-auto service-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold mb-2 text-primary text-center">Exámenes Preocupacionales</h4>
+            <p class="mb-4">Evaluamos la aptitud física y psicológica del candidato para el puesto de trabajo específico, detectando patologías preexistentes.</p>
+            <ul class="space-y-1 mb-4">
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Examen clínico completo
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Análisis de laboratorio
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Radiografía de tórax
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Evaluación psicotécnica
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Periódicos -->
+          <div class="bg-white rounded-lg shadow-md p-6 service-card">
+            <div class="bg-secondary/10 p-4 rounded-lg mb-4">
+              <svg class="h-10 w-10 text-secondary mx-auto service-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold mb-2 text-secondary text-center">Exámenes Periódicos</h4>
+            <p class="mb-4">Evaluación programada para detectar y prevenir enfermedades relacionadas con los riesgos específicos de cada puesto de trabajo.</p>
+            <ul class="space-y-1 mb-4">
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-primary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Control de exposición a riesgos
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-primary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Monitoreo de salud ocupacional
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-primary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Detección temprana de patologías
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-primary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Evaluaciones específicas según riesgos
+              </li>
+            </ul>
+          </div>
+              
+          <!-- Egreso -->
+          <div class="bg-white rounded-lg shadow-md p-6 service-card" >
+            <div class="bg-primary/10 p-4 rounded-lg mb-4">
+              <svg class="h-10 w-10 text-primary mx-auto service-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold mb-2 text-primary text-center">Exámenes de Egreso</h4>
+            <p class="mb-4">Determinan las condiciones de salud del trabajador al finalizar su relación laboral, identificando posibles patologías de origen laboral.</p>
+            <ul class="space-y-1 mb-4">
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Evaluación clínica completa
+              </li>
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Documentación de condición actual
+              </li>
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Comparación con exámenes previos
+              </li>
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Informe médico laboral
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Post-Ausencia Prolongada -->
+          <div class="bg-white rounded-lg shadow-md p-6 service-card">
+            <div class="bg-secondary/10 p-4 rounded-lg mb-4">
+              <svg class="h-10 w-10 text-secondary mx-auto service-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold mb-2 text-secondary text-center">Post-Ausencia Prolongada</h4>
+            <p class="mb-4">Evaluaciones para determinar la aptitud del trabajador para retornar a sus funciones después de una ausencia por enfermedad o accidente.</p>
+            <ul class="space-y-1 mb-4">
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-primary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Evaluación de condición actual
+              </li>
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-primary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Determinación de aptitud laboral
+              </li>
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-primary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Recomendaciones de reincorporación
+              </li>
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-primary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Adecuaciones laborales si corresponde
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Cambio de Puesto -->
+          <div class="bg-white rounded-lg shadow-md p-6 service-card">
+            <div class="bg-primary/10 p-4 rounded-lg mb-4">
+              <svg class="h-10 w-10 text-primary mx-auto service-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold mb-2 text-primary text-center">Cambio de Puesto</h4>
+            <p class="mb-4">Evaluamos la aptitud del trabajador para desempeñarse en un nuevo puesto con diferentes requerimientos y riesgos laborales.</p>
+            <ul class="space-y-1 mb-4">
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Evaluación de nuevas exigencias
+              </li>
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Compatibilidad con condición física
+              </li>
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Análisis de nuevos riesgos
+              </li>
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Recomendaciones específicas
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Servicios Adicionales -->
+          <div class="bg-white rounded-lg shadow-md p-6 service-card">
+            <div class="bg-secondary/10 p-4 rounded-lg mb-4">
+              <svg class="h-10 w-10 text-secondary mx-auto service-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold mb-2 text-secondary text-center">Servicios Adicionales</h4>
+            <p class="mb-4">Complementamos nuestra oferta con servicios especializados para cubrir todas las necesidades de medicina laboral.</p>
+            <ul class="space-y-1 mb-4">
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-primary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Evaluaciones psicotécnicas
+              </li>
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-primary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Audiometrías y espirometrías
+              </li>
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-primary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Control de adicciones
+              </li>
+              <li class="flex items-start   ">
+                <svg class="h-5 w-5 text-primary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Evaluación de trabajo en altura
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Para Empresas con animaciones -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h3 class="text-2xl font-bold mb-8 text-secondary" data-aos="fade-up">Para Empresas</h3>
+        
+        <div class="bg-neutral rounded-lg p-8 shadow-md card-hover" data-aos="fade-up" data-aos-delay="200">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div data-aos="fade-right" data-aos-delay="300">
+              <h4 class="text-xl font-bold mb-4 text-primary">Asesoramiento Integral</h4>
+              <p class="mb-6">Ofrecemos soluciones personalizadas para cada empresa, adaptándonos a sus necesidades específicas y ayudándoles a cumplir con la normativa vigente en materia de salud ocupacional.</p>
+              
+              <h4 class="text-xl font-bold mb-4 text-primary">Beneficios para su empresa</h4>
+              <ul class="space-y-2 mb-6">
+                <li class="flex items-start  ">
+                  <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Reducción del ausentismo laboral</span>
+                </li>
+                <li class="flex items-start  ">
+                  <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Prevención de enfermedades profesionales</span>
+                </li>
+                <li class="flex items-start  ">
+                  <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Mayor productividad y bienestar laboral</span>
+                </li>
+                <li class="flex items-start  ">
+                  <svg class="h-5 w-5 text-secondary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Cumplimiento de normativas legales</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div data-aos="fade-left" data-aos-delay="400">
+              <h4 class="text-xl font-bold mb-4 text-primary">Planes Empresariales</h4>
+              <p class="mb-4">Contamos con planes flexibles adaptados a las necesidades de cada empresa, independientemente de su tamaño o sector:</p>
+              
+              <div class="space-y-4 mb-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="border border-secondary rounded-md p-4 card-hover">
+                  <h5 class="font-bold text-secondary mb-2">Plan Básico</h5>
+                  <p>Ideal para pequeñas empresas. Incluye exámenes preocupacionales y periódicos básicos.</p>
+                </div>
+                <div class="border border-secondary rounded-md p-4 card-hover">
+                  <h5 class="font-bold text-secondary mb-2">Plan Estándar</h5>
+                  <p>Para empresas medianas. Incluye todos los exámenes obligatorios y seguimiento personalizado.</p>
+                </div>
+                <div class="border border-secondary rounded-md p-4 card-hover">
+                  <h5 class="font-bold text-secondary mb-2">Plan Premium</h5>
+                  <p>Solución completa para grandes empresas. Incluye todos los servicios y asesoramiento continuo en medicina laboral.</p>
+                </div>
+              </div>
+              
+              <div class="text-center" data-aos="zoom-in" data-aos-delay="600">
+                <a href="contacto.html" class="inline-block bg-secondary text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-all transform hover:scale-105 btn-shine">Solicitar información</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Call to Action con partículas -->
+    <section class="py-16 bg-gradient-to-r from-primary to-secondary text-white relative overflow-hidden">
+      <div id="particles-cta" class="absolute inset-0"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <h3 class="text-2xl font-bold mb-4" data-aos="zoom-in">¿Necesita servicios de medicina laboral?</h3>
+        <p class="text-lg mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">Nuestro equipo de profesionales está listo para brindarle la mejor atención y asesoramiento. Contáctenos para coordinar una evaluación de sus necesidades.</p>
+        <div data-aos="fade-up" data-aos-delay="400">
+          <a href="contacto.html" class="bg-white text-primary px-8 py-3 rounded-md font-bold hover:bg-neutral transition-all transform hover:scale-105">Contactar ahora</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-primary text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Clínica Sur</h3>
+          <p class="mb-2">Sirviendo a la comunidad de Malargüe con excelencia médica.</p>
+          <p>© 2025 Clínica Sur. Todos los derechos reservados.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Contacto</h3>
+          <p class="mb-2">Dirección: Villegas Oeste 97, Malargüe, Mendoza</p>
+          <p class="mb-2">Urgencias: (260) 447-0326</p>
+          <p class="mb-2">Administración: (260) 447-0326</p>
+          <p class="mb-2">Guardia: (260) 432-2579</p>
+          <p>Email: clinicasuradm@clinicasur.com.ar</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Horarios</h3>
+          <p class="mb-2">Atención administrativa: Lunes a Viernes 8:00 - 18:00</p>
+          <p>Guardia médica: 24 horas, todos los días</p>
+        </div>
+      </div>
+      
+      <!-- Línea separadora -->
+      <div class="border-t border-white/20 mt-8 pt-4 text-center">
+        <p class="text-sm text-white/80">
+          Sitio Desarrollado por 
+          <a href="https://tearsdev.netlify.app/" target="_blank" rel="noopener noreferrer" 
+             class="font-medium hover:text-accent transition-colors duration-300 hover:underline">
+            TearsDev
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Inicializar AOS (Animate On Scroll)
+    AOS.init({
+      duration: 800,
+      once: false,
+      mirror: true,
+      offset: 120,
+      easing: 'ease-in-out'
+    });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animación del header con GSAP
+      gsap.from("#navbar", {
+        y: -100,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+      });
+      
+      // Inicializar Particles.js para el fondo del hero
+      if (document.getElementById('particles-js')) {
+        particlesJS('particles-js', {
+          particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: "#ffffff" },
+            opacity: { value: 0.5, random: false },
+            size: { value: 3, random: true },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: "#ffffff",
+              opacity: 0.4,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 2,
+              direction: "none",
+              random: false,
+              straight: false,
+              out_mode: "out",
+              bounce: false
+            }
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: { enable: true, mode: "repulse" },
+              onclick: { enable: true, mode: "push" }
+            }
+          }
+        });
+      }
+      
+      // Inicializar particles para CTA
+      if (document.getElementById('particles-cta')) {
+        particlesJS('particles-cta', {
+          particles: {
+            number: { value: 40, density: { enable: true, value_area: 800 } },
+            color: { value: "#ffffff" },
+            opacity: { value: 0.3, random: false },
+            size: { value: 2, random: true },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: "#ffffff",
+              opacity: 0.2,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 1,
+              direction: "none",
+              random: true,
+              straight: false,
+              out_mode: "out",
+              bounce: false
+            }
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: { enable: true, mode: "grab" },
+              onclick: { enable: true, mode: "push" }
+            }
+          }
+        });
+      }
+      
+      // GSAP animaciones para elementos clave
+      gsap.from(".service-card", {
+        scrollTrigger: {
+          trigger: ".service-card",
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2
+      });
+      
+      // Animación para íconos
+      gsap.to(".service-icon", {
+        scrollTrigger: {
+          trigger: ".service-icon",
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        },
+        rotate: 360,
+        duration: 1,
+        stagger: 0.1,
+        ease: "elastic.out(1, 0.3)"
+      });
+    });
+
+    // Script para el menú móvil
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Marca la página actual como activa
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(link => {
+      const href = link.getAttribute('href');
+      if (currentPath.endsWith(href) ||
+        (currentPath.endsWith('/') && href === 'index.html') ||
+        (currentPath === '' && href === 'index.html')) {
+        link.classList.add('active');
+      }
+    });
+
+    // Toggle del menú móvil
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', function() {
+        if (mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+      
+      // Cerrar menú al hacer clic fuera
+      document.addEventListener('click', function(e) {
+        if (!mobileMenu.classList.contains('hidden') && 
+            !mobileMenu.contains(e.target) && 
+            !mobileMenuButton.contains(e.target)) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
