@@ -5,23 +5,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Institucional - Clínica Sur</title>
-  
+
   <!-- Meta tags para SEO -->
-  <meta name="description" content="Conozca la historia, valores e instalaciones de Clínica Sur. Somos un referente en salud para Malargüe y la región sur de Mendoza con más de 35 años de trayectoria.">
+  <meta name="description"
+    content="Conozca la historia, valores e instalaciones de Clínica Sur. Somos un referente en salud para Malargüe y la región sur de Mendoza con más de 35 años de trayectoria.">
   <meta name="keywords" content="clínica sur, malargüe, hospital, centro médico, médicos, salud, mendoza">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://clinicasur.com/institucional.html">
-  
+
   <!-- Open Graph para redes sociales -->
   <meta property="og:title" content="Conoce nuestra institución - Clínica Sur Malargüe">
-  <meta property="og:description" content="Nuestra historia, equipo médico e instalaciones al servicio de la salud en Malargüe y región sur de Mendoza.">
+  <meta property="og:description"
+    content="Nuestra historia, equipo médico e instalaciones al servicio de la salud en Malargüe y región sur de Mendoza.">
   <meta property="og:url" content="https://clinicasur.com/institucional.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="./src/LogoClinicaSur.png">
-
+  <!-- Favicons -->
+  <link rel="icon" href="./src/LogoClinicaSur-removebg-preview.png" type="image/png">
+  <link rel="shortcut icon" href="./src/LogoClinicaSur-removebg-preview.png" type="image/png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./src/LogoClinicaSur-removebg-preview.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./src/LogoClinicaSur-removebg-preview.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./src/LogoClinicaSur-removebg-preview.png">
+  <meta name="theme-color" content="#7c8e91">
   <!-- Fuentes -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+    rel="stylesheet">
+
   <!-- Tailwind CSS mediante CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -42,10 +52,10 @@
       }
     }
   </script>
-  
+
   <!-- Alpine.js para interactividad -->
   <script src="https://unpkg.com/alpinejs" defer></script>
-  
+
   <!-- AOS (Animate On Scroll) -->
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -57,10 +67,10 @@
   <!-- Swiper para carruseles -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-  
+
   <!-- Particles.js para fondos interactivos -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  
+
   <style>
     html {
       scroll-behavior: smooth;
@@ -77,9 +87,17 @@
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
 
     .float {
@@ -87,9 +105,17 @@
     }
 
     @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0px); }
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
     }
 
     .timeline-point {
@@ -265,15 +291,16 @@
         <!-- Logo y nombre -->
         <div class="flex items-center space-x-2">
           <a href="index.html" class="flex items-center space-x-3 group">
-          <div
-            class="h-10 w-10 bg-white/90 rounded-full flex items-center justify-center shadow-sm transform transition-transform group-hover:scale-110 duration-300 border-2 border-accent/30">
-            <img src="./src/LogoClinicaSur-removebg-preview.png" alt="Logo Clínica Sur" class="h-8 w-8 object-contain">
-          </div>
-          <div>
-            <h1 class="text-xl font-bold">Clínica Sur</h1>
-            <p class="text-xs text-accent">Malargüe, Mendoza</p>
-          </div>
-        </a>
+            <div
+              class="h-10 w-10 bg-white/90 rounded-full flex items-center justify-center shadow-sm transform transition-transform group-hover:scale-110 duration-300 border-2 border-accent/30">
+              <img src="./src/LogoClinicaSur-removebg-preview.png" alt="Logo Clínica Sur"
+                class="h-8 w-8 object-contain">
+            </div>
+            <div>
+              <h1 class="text-xl font-bold">Clínica Sur</h1>
+              <p class="text-xs text-accent">Malargüe, Mendoza</p>
+            </div>
+          </a>
         </div>
 
         <!-- Navegación para desktop -->
@@ -327,14 +354,15 @@
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div data-aos="fade-right" data-aos-delay="100">
             <h3 class="text-2xl font-bold mb-6 text-primary title-highlight">Nuestra Historia</h3>
-            <p class="mb-4">Clínica Sur nació en 1985 como un pequeño centro médico en la ciudad de Malargüe, con la
-              misión de brindar atención sanitaria de calidad a los habitantes de esta región del sur mendocino.</p>
-            <p class="mb-4">Lo que comenzó como un emprendimiento impulsado por un grupo de médicos comprometidos con la
-              comunidad, creció hasta convertirse en lo que hoy es una clínica integral con múltiples especialidades
-              médicas y equipamiento de última generación.</p>
-            <p>Durante más de 35 años, Clínica Sur ha sido testigo y protagonista del crecimiento de la región,
-              adaptándose a las necesidades cambiantes de la población y brindando respuestas efectivas a los desafíos
-              sanitarios de cada época.</p>
+            <p class="mb-4">Clínica Sur nació en 2017 como un centro médico de visión innovadora en la ciudad de
+              Malargüe, con la misión de brindar atención sanitaria de excelencia a los habitantes de esta región del
+              sur mendocino.</p>
+            <p class="mb-4">Lo que comenzó como un emprendimiento impulsado por una familia malarguina profundamente
+              comprometida con su comunidad, ha florecido hasta convertirse en lo que hoy es una clínica integral con
+              múltiples especialidades médicas y equipamiento de vanguardia.</p>
+            <p>Durante estos 8 años, Clínica Sur ha sido testigo y protagonista del desarrollo de la región, adaptándose
+              de manera ágil a las necesidades cambiantes de la población y brindando respuestas efectivas a los
+              desafíos sanitarios contemporáneos.</p>
           </div>
           <div data-aos="fade-left" data-aos-delay="300"
             class="bg-neutral rounded-lg p-6 shadow-md transform transition hover:scale-105 duration-300">
@@ -354,12 +382,13 @@
 
             <!-- Eventos -->
             <div class="space-y-12">
-              <!-- 1985 -->
+              <!-- 2017 -->
               <div class="relative flex md:items-center flex-col md:flex-row">
                 <div class="md:w-1/2 md:pr-8 mb-4 md:mb-0 md:text-right" data-aos="fade-right">
                   <div class="bg-white p-4 rounded-lg shadow-md timeline-content">
-                    <h5 class="text-lg font-bold text-primary mb-2">1985</h5>
-                    <p>Fundación de Clínica Sur con un pequeño equipo de 5 médicos y 10 profesionales de la salud.</p>
+                    <h5 class="text-lg font-bold text-primary mb-2">2017</h5>
+                    <p>Fundación de Clínica Sur por una familia malarguina con la visión de brindar servicios de salud
+                      de calidad a la comunidad local.</p>
                   </div>
                 </div>
                 <div class="absolute hidden md:block left-1/2 transform -translate-x-1/2">
@@ -368,7 +397,7 @@
                 <div class="md:w-1/2 md:pl-8"></div>
               </div>
 
-              <!-- 1995 -->
+              <!-- 2019 -->
               <div class="relative flex md:items-center flex-col md:flex-row">
                 <div class="md:w-1/2 md:pr-8"></div>
                 <div class="absolute hidden md:block left-1/2 transform -translate-x-1/2">
@@ -376,20 +405,20 @@
                 </div>
                 <div class="md:w-1/2 md:pl-8 mb-4 md:mb-0" data-aos="fade-left">
                   <div class="bg-white p-4 rounded-lg shadow-md timeline-content">
-                    <h5 class="text-lg font-bold text-primary mb-2">1995</h5>
-                    <p>Primera ampliación importante: incorporación de nuevas especialidades médicas y modernización del
-                      equipamiento diagnóstico.</p>
+                    <h5 class="text-lg font-bold text-primary mb-2">2019</h5>
+                    <p>Incorporación de Arco en C, tecnología avanzada que permitió ampliar nuestra oferta de cirugías
+                      traumatológicas con mayor precisión y seguridad.</p>
                   </div>
                 </div>
               </div>
 
-              <!-- 2005 -->
+              <!-- 2021 -->
               <div class="relative flex md:items-center flex-col md:flex-row">
                 <div class="md:w-1/2 md:pr-8 mb-4 md:mb-0 md:text-right" data-aos="fade-right">
                   <div class="bg-white p-4 rounded-lg shadow-md timeline-content">
-                    <h5 class="text-lg font-bold text-primary mb-2">2005</h5>
-                    <p>Inauguración del nuevo edificio con mayor capacidad de internación y el primer tomógrafo de la
-                      región sur de Mendoza.</p>
+                    <h5 class="text-lg font-bold text-primary mb-2">2021</h5>
+                    <p>Incorporación de laboratorio propio, permitiendo obtener resultados de análisis clínicos con
+                      mayor rapidez y eficiencia para nuestros pacientes.</p>
                   </div>
                 </div>
                 <div class="absolute hidden md:block left-1/2 transform -translate-x-1/2">
@@ -398,7 +427,7 @@
                 <div class="md:w-1/2 md:pl-8"></div>
               </div>
 
-              <!-- 2015 -->
+              <!-- 2023 -->
               <div class="relative flex md:items-center flex-col md:flex-row">
                 <div class="md:w-1/2 md:pr-8"></div>
                 <div class="absolute hidden md:block left-1/2 transform -translate-x-1/2">
@@ -406,19 +435,50 @@
                 </div>
                 <div class="md:w-1/2 md:pl-8 mb-4 md:mb-0" data-aos="fade-left">
                   <div class="bg-white p-4 rounded-lg shadow-md timeline-content">
-                    <h5 class="text-lg font-bold text-primary mb-2">2015</h5>
-                    <p>Creación del Centro de Medicina Laboral y ampliación del área de diagnóstico por imágenes.</p>
+                    <h5 class="text-lg font-bold text-primary mb-2">2023</h5>
+                    <p>Inicio de cirugías oftalmológicas, ampliando nuestros servicios especializados para atender
+                      necesidades visuales de alta complejidad en la región.</p>
                   </div>
                 </div>
+              </div>
+
+              <!-- 2024 -->
+              <div class="relative flex md:items-center flex-col md:flex-row">
+                <div class="md:w-1/2 md:pr-8 mb-4 md:mb-0 md:text-right" data-aos="fade-right">
+                  <div class="bg-white p-4 rounded-lg shadow-md timeline-content">
+                    <h5 class="text-lg font-bold text-primary mb-2">2024</h5>
+                    <p>Inauguración del servicio de medicina estética con tratamientos de vanguardia como botox, ácido
+                      hialurónico y terapias con plasma rico en plaquetas.</p>
+                  </div>
+                </div>
+                <div class="absolute hidden md:block left-1/2 transform -translate-x-1/2">
+                  <div class="w-8 h-8 rounded-full bg-primary border-4 border-accent timeline-point"></div>
+                </div>
+                <div class="md:w-1/2 md:pl-8"></div>
               </div>
 
               <!-- 2025 -->
               <div class="relative flex md:items-center flex-col md:flex-row">
+                <div class="md:w-1/2 md:pr-8"></div>
+                <div class="absolute hidden md:block left-1/2 transform -translate-x-1/2">
+                  <div class="w-8 h-8 rounded-full bg-primary border-4 border-accent timeline-point"></div>
+                </div>
+                <div class="md:w-1/2 md:pl-8 mb-4 md:mb-0" data-aos="fade-left">
+                  <div class="bg-white p-4 rounded-lg shadow-md timeline-content">
+                    <h5 class="text-lg font-bold text-primary mb-2">2025</h5>
+                    <p>Transformación integral del servicio de medicina laboral, implementando un innovador modelo de
+                      gestión preventiva y seguimiento personalizado para empresas de la región.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Actualidad -->
+              <div class="relative flex md:items-center flex-col md:flex-row">
                 <div class="md:w-1/2 md:pr-8 mb-4 md:mb-0 md:text-right" data-aos="fade-right">
                   <div class="bg-white p-4 rounded-lg shadow-md border-2 border-secondary timeline-content pulse">
-                    <h5 class="text-lg font-bold text-primary mb-2">2025</h5>
-                    <p>Actualidad: Una institución consolidada con más de 100 profesionales al servicio de la salud
-                      regional.</p>
+                    <h5 class="text-lg font-bold text-primary mb-2">Actualidad</h5>
+                    <p>Una institución consolidada con más de 50 profesionales al servicio de la salud regional,
+                      comprometidos con la excelencia médica y el bienestar de nuestra comunidad.</p>
                   </div>
                 </div>
                 <div class="absolute hidden md:block left-1/2 transform -translate-x-1/2">
@@ -466,8 +526,10 @@
               </div>
             </div>
             <h4 class="text-xl font-bold mb-4 text-primary mt-4 text-center">Nuestra Visión</h4>
-            <p class="text-center">Ser reconocidos como la institución de salud líder en el sur de Mendoza,
-              destacándonos por la calidad médica, la innovación tecnológica y la atención centrada en el paciente.</p>
+            <p class="text-center">Ser la institución de salud líder en el sur de Mendoza, destacando por nuestra
+              calidad médica e innovación. Aspiramos a la excelencia en prevención, diagnóstico y gestión de la salud
+              laboral, desarrollando soluciones que promuevan entornos de trabajo seguros y productivos para las
+              empresas regionales.</p>
           </div>
 
           <!-- Valores -->
@@ -1393,117 +1455,108 @@
             </div>
             <div class="p-4">
               <h4 class="text-lg font-bold text-primary mb-2">Consultorios Externos</h4>
-              <p class="text-sm">Espacios confortables para la atención ambulatoria de diversas especialidades médicas.</p>
+              <p class="text-sm">Espacios confortables para la atención ambulatoria de diversas especialidades médicas.
+              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Certificaciones y Reconocimientos -->
+    <!-- Habilitación Ministerial -->
     <section class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h3 class="text-2xl font-bold mb-12 text-primary text-center" data-aos="fade-up">Certificaciones y Reconocimientos</h3>
+        <h3 class="text-2xl font-bold mb-12 text-primary text-center" data-aos="fade-up">Habilitación Ministerial</h3>
 
         <div class="grid md:grid-cols-2 gap-10 items-center mb-10">
           <div data-aos="fade-right" data-aos-delay="100">
-            <p class="mb-6">En Clínica Sur nos esforzamos constantemente por mantener y mejorar nuestros estándares de
-              calidad. Nuestro compromiso con la excelencia ha sido reconocido por diversas instituciones nacionales e
-              internacionales.</p>
-            <p>Estas certificaciones no solo avalan nuestra calidad asistencial, sino que también representan nuestro
-              compromiso permanente con la mejora continua y la seguridad del paciente.</p>
+            <p class="mb-6">En Clínica Sur contamos con la habilitación oficial del Ministerio de Salud de la Provincia
+              de Mendoza, un logro significativo que no todas las instituciones de salud de la región han conseguido.
+            </p>
+            <p class="mb-6">Esta habilitación certifica que nuestras instalaciones, equipamiento y procedimientos
+              cumplen con todos los requisitos legales y sanitarios exigidos por la normativa vigente, garantizando así
+              la seguridad y calidad en la atención de nuestros pacientes.</p>
+            <p>Operar bajo el marco normativo ministerial nos permite brindar servicios médicos con el respaldo de las
+              autoridades sanitarias, lo que representa una garantía adicional para quienes confían su salud a nuestra
+              institución.</p>
           </div>
 
           <div class="bg-neutral p-6 rounded-lg shadow-md transform transition hover:scale-105 duration-300"
             data-aos="fade-left" data-aos-delay="300">
             <div class="bg-accent/30 rounded-lg h-64 w-full flex items-center justify-center float">
-              <div class="text-primary text-xl font-semibold">Imagen de certificaciones</div>
+              <div class="flex flex-col items-center justify-center p-6">
+                <svg class="h-20 w-20 text-primary mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                <div class="text-primary text-xl font-semibold text-center">Habilitación Oficial del<br>Ministerio de
+                  Salud</div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Certificaciones con animaciones -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <!-- Certificación 1 -->
+        <!-- Beneficios de la habilitación -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+          <!-- Beneficio 1 -->
           <div class="text-center" data-aos="zoom-in" data-aos-delay="100">
-            <div class="mx-auto bg-neutral rounded-full w-24 h-24 flex items-center justify-center mb-4 shadow-md transform transition-all duration-500 hover:scale-110 pulse">
-              <div class="text-primary text-3xl font-bold">ISO</div>
+            <div
+              class="mx-auto bg-neutral rounded-full w-24 h-24 flex items-center justify-center mb-4 shadow-md transform transition-all duration-500 hover:scale-110 pulse">
+              <svg class="h-12 w-12 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
             </div>
-            <h4 class="font-bold text-primary">ISO 9001</h4>
-            <p class="text-sm mt-2">Certificación en Sistemas de Gestión de Calidad</p>
+            <h4 class="font-bold text-primary">Garantía de Calidad</h4>
+            <p class="text-sm mt-2">Cumplimos con todos los estándares sanitarios y de seguridad requeridos por las
+              autoridades provinciales.</p>
           </div>
 
-          <!-- Certificación 2-4 -->
+          <!-- Beneficio 2 -->
           <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
-            <div class="mx-auto bg-neutral rounded-full w-24 h-24 flex items-center justify-center mb-4 shadow-md transform transition-all duration-500 hover:scale-110 pulse">
-              <div class="text-primary text-3xl font-bold">JCI</div>
+            <div
+              class="mx-auto bg-neutral rounded-full w-24 h-24 flex items-center justify-center mb-4 shadow-md transform transition-all duration-500 hover:scale-110 pulse">
+              <svg class="h-12 w-12 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
             </div>
-            <h4 class="font-bold text-primary">Joint Commission</h4>
-            <p class="text-sm mt-2">Acreditación en Seguridad del Paciente</p>
+            <h4 class="font-bold text-primary">Respaldo Oficial</h4>
+            <p class="text-sm mt-2">Nuestros servicios cuentan con el respaldo y reconocimiento de las autoridades
+              sanitarias de Mendoza.</p>
           </div>
-          
+
+          <!-- Beneficio 3 -->
           <div class="text-center" data-aos="zoom-in" data-aos-delay="300">
-            <div class="mx-auto bg-neutral rounded-full w-24 h-24 flex items-center justify-center mb-4 shadow-md transform transition-all duration-500 hover:scale-110 pulse">
-              <div class="text-primary text-2xl font-bold">ITAES</div>
+            <div
+              class="mx-auto bg-neutral rounded-full w-24 h-24 flex items-center justify-center mb-4 shadow-md transform transition-all duration-500 hover:scale-110 pulse">
+              <svg class="h-12 w-12 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
             </div>
-            <h4 class="font-bold text-primary">ITAES</h4>
-            <p class="text-sm mt-2">Instituto Técnico para la Acreditación de Establecimientos de Salud</p>
-          </div>
-          
-          <div class="text-center" data-aos="zoom-in" data-aos-delay="400">
-            <div class="mx-auto bg-neutral rounded-full w-24 h-24 flex items-center justify-center mb-4 shadow-md transform transition-all duration-500 hover:scale-110 pulse">
-              <div class="text-primary text-3xl font-bold">MSP</div>
-            </div>
-            <h4 class="font-bold text-primary">Ministerio de Salud</h4>
-            <p class="text-sm mt-2">Reconocimiento a la Excelencia en Atención Sanitaria</p>
+            <h4 class="font-bold text-primary">Compromiso Verificado</h4>
+            <p class="text-sm mt-2">Nuestra habilitación refleja nuestro compromiso continuo con la mejora de nuestros
+              servicios médicos.</p>
           </div>
         </div>
 
-        <!-- Premios y reconocimientos con timeline horizontal -->
-        <div class="mt-16" data-aos="fade-up">
-          <h4 class="text-xl font-bold mb-8 text-primary text-center">Premios y Reconocimientos</h4>
-
-          <div class="relative">
-            <!-- Línea horizontal -->
-            <div class="hidden md:block absolute top-16 left-0 right-0 h-1 bg-accent"></div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-              <!-- Premio 1-3 -->
-              <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                <div class="relative">
-                  <div class="mx-auto bg-primary rounded-full w-12 h-12 flex items-center justify-center mb-2 z-10 relative icon-rotate">
-                    <span class="text-white font-bold">2015</span>
-                  </div>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-md mt-4 card-hover">
-                  <h5 class="font-bold text-primary mb-2">Premio a la Innovación Médica</h5>
-                  <p class="text-sm">Otorgado por la Asociación Médica de Mendoza por nuestro programa de telemedicina rural.</p>
-                </div>
-              </div>
-              
-              <div class="text-center" data-aos="fade-up" data-aos-delay="300">
-                <div class="relative">
-                  <div class="mx-auto bg-primary rounded-full w-12 h-12 flex items-center justify-center mb-2 z-10 relative icon-rotate">
-                    <span class="text-white font-bold">2018</span>
-                  </div>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-md mt-4 card-hover">
-                  <h5 class="font-bold text-primary mb-2">Mención de Honor</h5>
-                  <p class="text-sm">Reconocimiento del Gobierno de Mendoza por nuestro programa de atención comunitaria en zonas rurales.</p>
-                </div>
-              </div>
-              
-              <div class="text-center" data-aos="fade-up" data-aos-delay="500">
-                <div class="relative">
-                  <div class="mx-auto bg-secondary rounded-full w-12 h-12 flex items-center justify-center mb-2 z-10 relative icon-rotate">
-                    <span class="text-white font-bold">2023</span>
-                  </div>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-md mt-4 card-hover">
-                  <h5 class="font-bold text-primary mb-2">Premio Excelencia Sanitaria</h5>
-                  <p class="text-sm">Otorgado por la Sociedad Argentina de Salud Pública por nuestro modelo de gestión hospitalaria.</p>
-                </div>
-              </div>
+        <!-- Información adicional -->
+        <div class="bg-neutral p-6 rounded-lg shadow-md mt-12" data-aos="fade-up" data-aos-delay="400">
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/6 flex justify-center mb-4 md:mb-0">
+              <svg class="h-16 w-16 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div class="md:w-5/6 md:pl-6">
+              <h4 class="text-lg font-bold text-primary mb-2">¿Por qué es importante la habilitación ministerial?</h4>
+              <p>La habilitación del Ministerio de Salud certifica que nuestra institución opera bajo estrictos
+                protocolos de calidad y seguridad. Esto implica que nuestras instalaciones, procesos y personal han sido
+                evaluados y aprobados por las autoridades sanitarias competentes, garantizando un entorno seguro para la
+                atención de nuestros pacientes. Al elegir Clínica Sur, usted elige una institución que cumple con todas
+                las normativas vigentes en materia de salud.</p>
             </div>
           </div>
         </div>
@@ -1544,17 +1597,17 @@
         </div>
         <div>
           <h3 class="text-xl font-bold mb-4">Horarios</h3>
-          <p class="mb-2">Atención administrativa: Lunes a Viernes 8:00 - 18:00</p>
+          <p class="mb-2">Atención administrativa: Lunes a Viernes 7:00 - 22:30</p>
           <p>Guardia médica: 24 horas, todos los días</p>
         </div>
       </div>
-      
+
       <!-- Línea separadora -->
       <div class="border-t border-white/20 mt-8 pt-4 text-center">
         <p class="text-sm text-white/80">
-          Sitio Desarrollado por 
-          <a href="https://tearsdev.netlify.app/" target="_blank" rel="noopener noreferrer" 
-             class="font-medium hover:text-accent transition-colors duration-300 hover:underline">
+          Sitio Desarrollado por
+          <a href="https://tearsdev.netlify.app/" target="_blank" rel="noopener noreferrer"
+            class="font-medium hover:text-accent transition-colors duration-300 hover:underline">
             TearsDev
           </a>
         </p>
@@ -1733,4 +1786,5 @@
     }
   </script>
 </body>
+
 </html>
